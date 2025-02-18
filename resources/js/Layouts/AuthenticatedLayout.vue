@@ -24,7 +24,7 @@ const showingNavigationDropdown = ref(false);
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800"
+                                        class="block h-12 w-auto fill-current text-gray-800"
                                     />
                                 </Link>
                             </div>
@@ -33,11 +33,12 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
+
                                 <NavLink
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
+                                    :href="route('minecraft-db.index')"
+                                    :active="route().current('minecraft-db.index')"
                                 >
-                                    Dashboard
+                                    База Minecraft
                                 </NavLink>
                             </div>
                         </div>
@@ -184,7 +185,7 @@ const showingNavigationDropdown = ref(false);
                 class="bg-white shadow"
                 v-if="$slots.header"
             >
-                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <div class="flex justify-between mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
             </header>
