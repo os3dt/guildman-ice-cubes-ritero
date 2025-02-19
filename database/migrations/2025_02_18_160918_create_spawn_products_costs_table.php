@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('spawn_products_costs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('db_item_id');
+            $table->integer('one_item')->nullable()->default(0);
             $table->integer('one_stack')->nullable()->default(0);
             $table->integer('one_shulker')->nullable()->default(0);
             $table->string('trader');

@@ -12,6 +12,7 @@ class SpawnProductsCost extends Model
 
     protected $fillable = [
         'db_item_id',
+        'one_item',
         'one_stack',
         'one_shulker',
         'trader',

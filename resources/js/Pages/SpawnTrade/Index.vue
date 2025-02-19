@@ -55,6 +55,7 @@ const handleDelete = (item) => {
                                     <thead class="border-b border-white/10 text-sm leading-6 text-gray-700 w-full">
                                     <tr>
                                         <th class="py-2 text-center w-1/5 font-semibold">Цена за шт</th>
+                                        <th class="py-2 text-center w-1/5 font-semibold">Цена за стак</th>
                                         <th class="py-2 text-center w-1/5 font-semibold">Цена за шалкер</th>
                                         <th class="py-2 text-center w-1/5 font-semibold">Продавец</th>
                                         <th class="py-2 text-center w-2/5 font-semibold sr-only"></th>
@@ -63,6 +64,7 @@ const handleDelete = (item) => {
                                     <tbody class="divide-y divide-white/5">
                                     <template v-for="item in productCosts.data" :key="item.id" class="">
                                         <tr v-if="dItem.id === item.db_item_id" class="">
+                                            <td class="py-4 text-sm text-center leading-6 text-gray-700 border-b">{{ item.one_item }}</td>
                                             <td class="py-4 text-sm text-center leading-6 text-gray-700 border-b">{{ item.one_stack }}</td>
                                             <td class="py-4 text-sm text-center leading-6 text-gray-700 border-b">{{ item.one_shulker !== null ? item.one_shulker : '-' }}</td>
                                             <td class="py-4 text-sm text-center leading-6 text-gray-700 border-b">{{ item.trader }}</td>

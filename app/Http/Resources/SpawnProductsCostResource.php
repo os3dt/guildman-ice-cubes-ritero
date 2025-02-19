@@ -12,6 +12,7 @@ class SpawnProductsCostResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'one_item' => $this->one_item,
             'one_stack' => $this->one_stack,
             'one_shulker' => $this->one_shulker,
             'trader' => $this->trader,

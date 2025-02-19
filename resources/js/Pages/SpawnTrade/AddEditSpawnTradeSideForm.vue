@@ -7,8 +7,6 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import {ChevronUpDownIcon, CheckIcon} from "@heroicons/vue/24/outline/index.js";
-import SelectInput from "@/Components/Inputs/SelectInput.vue";
 import SelectDBInput from "@/Components/Inputs/SelectDBInput.vue";
 
 const props = defineProps({
@@ -29,6 +27,7 @@ const getModelValueForForm = (prop, defValue = null) => {
 const form = useForm({
     _method: 'post',
     db_item_id: null,
+    one_item: null,
     one_stack: null,
     one_shulker: null,
     trader: null,
@@ -37,6 +36,7 @@ const form = useForm({
 const fillForm = () => {
     form._method = editMode.value ? 'patch' : 'post'
     form.db_item_id =  getModelValueForForm('db_item_id', '')
+    form.one_item =    String(getModelValueForForm('one_item', ''))
     form.one_stack =   String(getModelValueForForm('one_stack', ''))
     form.one_shulker = String(getModelValueForForm('one_shulker', ''))
     form.trader =      getModelValueForForm('trader', '')
@@ -81,6 +81,12 @@ const onSave = () => {
 
             <div>
                 <InputLabel for="one_stack" value="Цена за штуку" />
+                <TextInput id="one_stack" class="mt-1 block w-full" v-model="form.one_item" placeholder="Цена за штуку" />
+                <InputError class="mt-2" :message="form.errors.one_item" />
+            </div>
+
+            <div>
+                <InputLabel for="one_stack" value="Цена за стак" />
                 <TextInput id="one_stack" class="mt-1 block w-full" v-model="form.one_stack" placeholder="Цена за штуку" />
                 <InputError class="mt-2" :message="form.errors.one_stack" />
             </div>

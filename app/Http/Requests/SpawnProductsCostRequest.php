@@ -10,8 +10,9 @@ class SpawnProductsCostRequest extends FormRequest
     {
         return [
             'db_item_id' => ['required'],
-            'one_stack' => ['integer'],
-            'one_shulker' => ['integer'],
+            'one_item' => ['integer', 'string'],
+            'one_stack' => ['integer', 'string'],
+            'one_shulker' => ['integer', 'string'],
             'trader' => ['required'],
         ];
     }
