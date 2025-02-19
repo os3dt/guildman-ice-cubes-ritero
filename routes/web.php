@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DBItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpawnProductsCostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +33,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::patch('/{DBItem}', 'update')->name('update');
         Route::delete('/{DBItem}', 'destroy')->name('destroy');
+    });
+
+    Route::prefix('products-cost')->name('products-cost.')->controller(SpawnProductsCostController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{ProductCost}', 'update')->name('update');
+        Route::delete('/{ProductCost}', 'destroy')->name('destroy');
     });
 
 });

@@ -33,6 +33,12 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
+                                <NavLink
+                                    :href="route('products-cost.index')"
+                                    :active="route().current('products-cost.index')"
+                                >
+                                    Цены на сервере
+                                </NavLink>
 
                                 <NavLink
                                     :href="route('minecraft-db.index')"
