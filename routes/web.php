@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DBItemController;
+use App\Http\Controllers\PriceIceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SpawnProductsCostController;
 use Illuminate\Foundation\Application;
@@ -40,6 +41,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::patch('/{ProductCost}', 'update')->name('update');
         Route::delete('/{ProductCost}', 'destroy')->name('destroy');
+    });
+
+    Route::prefix('price-ice')->name('price-ice.')->controller(PriceIceController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{PriceIce}', 'update')->name('update');
+        Route::delete('/{PriceIce}', 'destroy')->name('destroy');
     });
 
 });

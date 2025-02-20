@@ -1,13 +1,13 @@
 <script setup>
 
-import {computed, ref, watch} from "vue";
+import {ref, watch} from "vue";
 import {useForm} from "@inertiajs/vue3";
 import SideForm from "@/Components/Sidepage/SideForm.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SelectDBInput from "@/Components/Inputs/SelectDBInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
-import SelectDBInput from "@/Components/Inputs/SelectDBInput.vue";
 
 const props = defineProps({
     modelValue: {
@@ -27,18 +27,17 @@ const getModelValueForForm = (prop, defValue = null) => {
 const form = useForm({
     _method: 'post',
     db_item_id: null,
-    one_item: null,
-    one_stack: null,
-    one_shulker: null,
-    trader: null,
+    one: null,
+    stack: null,
+    shulker: null,
 })
 
 const fillForm = () => {
     form._method = editMode.value ? 'patch' : 'post'
     form.db_item_id =  getModelValueForForm('db_item_id', '')
-    form.one_item =    String(getModelValueForForm('one_item', ''))
-    form.one_stack =   String(getModelValueForForm('one_stack', ''))
-    form.one_shulker = String(getModelValueForForm('one_shulker', ''))
+    form.one =         String(getModelValueForForm('one', ''))
+    form.stack =       String(getModelValueForForm('stack', ''))
+    form.shulker =     String(getModelValueForForm('shulker', ''))
     form.trader =      getModelValueForForm('trader', '')
 }
 
@@ -55,7 +54,7 @@ const onClose = () => {
 }
 
 const onSave = () => {
-    form.post(editMode.value ? route('products-cost.update', props.modelValue.id) : route('products-cost.store'), {
+    form.post(editMode.value ? route('price-ice.update', props.modelValue.id) : route('price-ice.store'), {
         onSuccess: onClose
     })
 }
@@ -63,10 +62,10 @@ const onSave = () => {
 
 <template>
     <SideForm
-        title="Создание записи о продавце"
+        title="Создание расценки 🧊"
         :model-value="!!modelValue"
-        @close="onClose"
-    >
+        @close="onClose">
+
         <div class="flex flex-col gap-6">
             <div>
                 <InputLabel for="db_item_id" value="Цена за штуку" />
@@ -80,27 +79,21 @@ const onSave = () => {
             </div>
 
             <div>
-                <InputLabel for="one_stack" value="Цена за штуку" />
-                <TextInput id="one_stack" class="mt-1 block w-full" v-model="form.one_item" placeholder="Цена за штуку" />
-                <InputError class="mt-2" :message="form.errors.one_item" />
+                <InputLabel for="one" value="🧊 за штуку" />
+                <TextInput id="one" class="mt-1 block w-full" v-model="form.one" placeholder="Кол-во" />
+                <InputError class="mt-2" :message="form.errors.one" />
             </div>
 
             <div>
-                <InputLabel for="one_stack" value="Цена за стак" />
-                <TextInput id="one_stack" class="mt-1 block w-full" v-model="form.one_stack" placeholder="Цена за стак" />
-                <InputError class="mt-2" :message="form.errors.one_stack" />
+                <InputLabel for="stack" value="🧊 за стак" />
+                <TextInput id="stack" class="mt-1 block w-full" v-model="form.stack" placeholder="Кол-во" />
+                <InputError class="mt-2" :message="form.errors.stack" />
             </div>
 
             <div>
-                <InputLabel for="one_shulker" value="Цена за шалкер" />
-                <TextInput id="one_shulker" class="mt-1 block w-full" v-model="form.one_shulker" placeholder="Цена за шалкер" />
-                <InputError class="mt-2" :message="form.errors.one_shulker" />
-            </div>
-
-            <div>
-                <InputLabel for="trader" value="Продавец" />
-                <TextInput id="trader" class="mt-1 block w-full" v-model="form.trader" placeholder="Продавец" />
-                <InputError class="mt-2" :message="form.errors.trader" />
+                <InputLabel for="shulker" value="🧊 за шалкер" />
+                <TextInput id="shulker" class="mt-1 block w-full" v-model="form.shulker" placeholder="Кол-во" />
+                <InputError class="mt-2" :message="form.errors.shulker" />
             </div>
         </div>
 
@@ -110,3 +103,4 @@ const onSave = () => {
 
     </SideForm>
 </template>
+

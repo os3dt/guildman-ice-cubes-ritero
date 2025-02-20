@@ -34,6 +34,13 @@ const showingNavigationDropdown = ref(false);
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
                                 <NavLink
+                                    :href="route('price-ice.index')"
+                                    :active="route().current('price-ice.index')"
+                                >
+                                    Цены на ледышки 🧊
+                                </NavLink>
+
+                                <NavLink
                                     :href="route('products-cost.index')"
                                     :active="route().current('products-cost.index')"
                                 >

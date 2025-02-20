@@ -45,7 +45,8 @@ const handleDelete = (item) => {
                             :key="item.id"
                             class="relative aspect-square bg-white rounded-xl flex flex-col items-center justify-center p-4 border border-gray-300">
                             <img :src="item.icon" class="sm:size-12 md:size-16 lg:size-24 xl:size-32" alt="{{ item.name }}">
-                            <div class="text-center break-words">{{item.name}} x{{item.stack}}</div>
+                            <div class="text-center break-words">{{item.name}} </div>
+                            <span class="absolute top-2 left-2 text-gray-400">x{{item.stack}}</span>
                             <div class="absolute top-1 right-1">
                                 <div class="flex">
                                     <button
