@@ -6,36 +6,32 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Player;
 use App\Models\Product;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return ProductResource::collection(Product::all());
+        $products = ProductResource::collection(Product::all());
+
+        return Inertia::render('products/Index')
+            ->with(['products' => $products]);
     }
 
     public function store(ProductRequest $request)
     {
-        return new ProductResource(Product::create($request->validated()));
-    }
-
-    public function show(Product $product)
-    {
-        return new ProductResource($product);
+        Product::create($request->validated());
     }
 
     public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->validated());
 
-        return new ProductResource($product);
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-
-        return response()->json();
     }
 
     public function buyProduct(Player $player, Product $product)

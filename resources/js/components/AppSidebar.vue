@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, User } from 'lucide-vue-next';
+import {Link, router} from '@inertiajs/vue3';
+import { ShoppingBasket, LayoutGrid, User } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import {route} from "ziggy-js";
 
@@ -19,6 +18,15 @@ const mainNavItems: NavItem[] = [
         title: 'Игроки',
         href: route('players.index'),
         icon: User
+    },
+    {
+        title: 'Услуги',
+        href: route('products.index'),
+        icon: ShoppingBasket
+    },
+    {
+        title: 'Транзакции',
+        href: route('')
     }
 ];
 </script>

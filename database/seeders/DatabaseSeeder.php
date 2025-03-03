@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Player;
+use App\Models\Product;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Database\Factories\PlayerFactory;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
 //            'email' => 'test@example.com',
 //        ]);
 
-        Player::factory(10)->create();
+//        Player::factory(10)->create();
+        Product::factory(10)->create();
     }
 }

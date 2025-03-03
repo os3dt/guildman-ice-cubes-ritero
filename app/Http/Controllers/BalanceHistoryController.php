@@ -32,4 +32,9 @@ class BalanceHistoryController extends Controller
     {
         $balanceHistory->delete();
     }
+
+    public function playerHistory()
+    {
+        
+    }
 }

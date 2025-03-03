@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BalanceHistoryController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,19 @@ Route::middleware(['auth'])->group(function () {
        Route::delete('/{player}', 'destroy')->name('destroy');
     });
 
+    Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{product}', 'update')->name('update');
+        Route::delete('/{product}', 'destroy')->name('destroy');
+    });
+
+    Route::prefix('transactions')->name('transactions.')->controller(BalanceHistoryController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/player/{player}/history', 'playerHistory')->name('player.history');
+    });
+
     Route::post('/player/{player}/deposit', [PlayerController::class, 'deposit'])->name('player.deposit');
-    Route::get('/player/{player}/history', [PlayerController::class, 'history'])->name('player.history');
     Route::post('/player/{player}/product/{product}', [ProductController::class, 'buyProduct'])->name('buyProduct');
 });
 
