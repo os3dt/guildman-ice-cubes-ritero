@@ -88,7 +88,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Pen, Plus } from 'lucide-vue-next';
-import { Inertia } from '@inertiajs/inertia-vue3'
+import { router } from '@inertiajs/vue3'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import {useField, useForm} from 'vee-validate'
@@ -103,7 +103,6 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
-import {string} from "zod";
 
 interface Props {
     player?: {
@@ -155,12 +154,24 @@ const onSubmit = handleSubmit((values) => {
     console.log('Отправка данных:', { ...values, id: props.player?.id });
 
     if (props.isAdd) {
-        Inertia.post(route('players.store'), { player: values });
+        router.post(route('players.store'), values );
     } else {
-        // Inertia.patch(route('players.update', props.player?.id), values);
+        updatePlayer(values?.id, values)
     }
 
     isOpen.value = false;
     resetForm();
 });
+
+const updatePlayer = (player: number | undefined, values: object) => {
+    router.patch(route('players.update', player), values, {
+        onSuccess: () => {
+            console.log('Игрок обновлен');
+        },
+        onError: (errors) => {
+            console.error(errors);
+        }
+    })
+}
+
 </script>

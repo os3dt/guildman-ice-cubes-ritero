@@ -20,13 +20,11 @@ class PlayerController extends Controller
 
     public function store(PlayerRequest $request)
     {
-        dd(request()->all());
         Player::create($request->validated());
     }
 
     public function update(PlayerRequest $request, Player $player)
     {
-        dd(request()->all());
         $player->update($request->validated());
     }
 

@@ -17,6 +17,7 @@ class PlayerResource extends JsonResource
             'server_id' => $this->server_id,
             'discord_id' => $this->discord_id,
             'balance' => $this->balance,
+            'is_locked' => $this->is_locked,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
