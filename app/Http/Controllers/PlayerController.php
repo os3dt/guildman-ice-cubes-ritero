@@ -20,6 +20,7 @@ class PlayerController extends Controller
 
     public function store(PlayerRequest $request)
     {
+        dd(request()->all());
         Player::create($request->validated());
     }
 

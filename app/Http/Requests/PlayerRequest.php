@@ -10,9 +10,8 @@ class PlayerRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'server_id' => ['required'],
-            'discord_id' => ['required'],
-            'balance' => ['integer', 'nullable'],
+            'server_id' => ['required', 'numeric'],
+            'discord_id' => ['required', 'numeric'],
         ];
     }
 
