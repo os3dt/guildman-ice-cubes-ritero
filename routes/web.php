@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
        Route::post('/', 'store')->name('store');
        Route::patch('/{player}', 'update')->name('update');
        Route::delete('/{player}', 'destroy')->name('destroy');
+
+       Route::post('/{player}/deposit', 'deposit')->name('deposit');
     });
 
     Route::prefix('products')->name('products.')->controller(ProductController::class)->group(function () {
@@ -28,15 +30,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'store')->name('store');
         Route::patch('/{product}', 'update')->name('update');
         Route::delete('/{product}', 'destroy')->name('destroy');
+
+        Route::post('/player/{player}/product/{product}', [ProductController::class, 'buyProduct'])->name('buyProduct');
     });
 
     Route::prefix('transactions')->name('transactions.')->controller(BalanceHistoryController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/player/{player}/history', 'playerHistory')->name('player.history');
+        Route::get('/{player}/history', 'playerHistory')->name('player.history');
     });
 
-    Route::post('/player/{player}/deposit', [PlayerController::class, 'deposit'])->name('player.deposit');
-    Route::post('/player/{player}/product/{product}', [ProductController::class, 'buyProduct'])->name('buyProduct');
 });
 
 require __DIR__.'/settings.php';
